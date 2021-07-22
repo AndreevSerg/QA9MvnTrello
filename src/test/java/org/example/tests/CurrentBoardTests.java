@@ -1,6 +1,7 @@
 package org.example.tests;
 
 import org.example.pages.*;
+import org.example.util.DataProviders;
 import org.openqa.selenium.support.PageFactory;
 import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
@@ -34,6 +35,14 @@ public class CurrentBoardTests extends TestBase{
     public void newListCreatingTest()  {
         int beginListsQuantity = qaHaifa9Board.getListsQuantity();
         qaHaifa9Board.addNewList("New");
+        int endListsQuantity = qaHaifa9Board.getListsQuantity();
+        Assert.assertEquals(endListsQuantity,beginListsQuantity+1,"endListsQuantity is not beginListsQuantity+1");
+    }
+
+    @Test(dataProviderClass = DataProviders.class, dataProvider = "newListCreating")
+    public void newListCreatingTestParam(String nameList)  {
+        int beginListsQuantity = qaHaifa9Board.getListsQuantity();
+        qaHaifa9Board.addNewList(nameList);
         int endListsQuantity = qaHaifa9Board.getListsQuantity();
         Assert.assertEquals(endListsQuantity,beginListsQuantity+1,"endListsQuantity is not beginListsQuantity+1");
     }

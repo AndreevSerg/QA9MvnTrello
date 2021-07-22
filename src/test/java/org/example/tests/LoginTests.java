@@ -1,6 +1,7 @@
 package org.example.tests;
 
 import org.example.pages.*;
+import org.example.util.DataProviders;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.PageFactory;
@@ -38,6 +39,17 @@ public class LoginTests extends TestBase {
 
     }
 
+    @Test(dataProviderClass = DataProviders.class, dataProvider = "dataProviderThird")
+    public void negativeLoginThirdDataProv(String login, String password) {
+        //loginPage.fillInEmailField("email");
+        //loginPage.fillInPasswordField("nlkikjl");
+        //loginPage.submitLoginNoAttl();
+        loginPage.loginNotAttl(login, password);
+        Assert.assertEquals(loginPage.getErrorMessage(),
+                "There isn't an account for this email", "The error message is not correct");
+
+    }
+
     @Test(enabled = false)
     public void loginTest() throws InterruptedException {
 
@@ -70,9 +82,11 @@ public class LoginTests extends TestBase {
         Thread.sleep(3000);
     }
 
-    @Test
-    public void positiveLogin() {
-        loginPage.loginAsAttl(LOGIN, PASSWORD);
+    @Test(dataProviderClass = DataProviders.class,dataProvider = "loginPositive")
+    public void positiveLogin(String login, String password) {
+        //loginPage.loginAsAttl(LOGIN, PASSWORD);
+        loginPage.loginAsAttl(login,password);
+
         boardsPage.waitUntilPageIsLoaded();
         //   System.out.println("Name of the element is: "
         //          + driver.findElement(By.xpath("//button[@data-test-id='header-boards-menu-button']/.")).getText());
