@@ -26,16 +26,23 @@ public class LoginPageHelper extends PageBase{
     }
 
     public LoginPageHelper openPage(){
+
+        log4j.startMethod("LoginPageHelper - openPage()");
+        log4j.info("wait until loginIcon button is clickable and click on it");
         //click 'Log in' button
         //Thread.sleep(5000);
         waitUntilElementIsClickable(logInIcon, 40);
         //click 'Log in' button
         //System.out.println("Log in button name: " + driver.findElement(By.cssSelector(".text-primary")));
         logInIcon.click();
+        log4j.endMethod("LoginPageHelper - openPage()");
         return this;
     }
     public LoginPageHelper waitUntilPageIsLoaded(){
+        log4j.startMethod("LoginPageHelper - waitUntilPageIsLoaded()");
+        log4j.info("Wait until 'login' button is clickable");
         waitUntilElementIsClickable(loginButton,10);
+        log4j.endMethod("LoginPageHelper - waitUntilPageIsLoaded()");
         return this;
     }
 
@@ -46,12 +53,16 @@ public class LoginPageHelper extends PageBase{
     }
 
     public String getErrorMessage(){
+        log4j.startMethod("LoginPageHelper - getErrorMessage()");
+        log4j.info("wait until error message is visible");
         waitUntilElementIsVisible(errorMessage, 10);
         //Output error message
         /*System.out.println("Error message: " + driver
                 .findElements(By.cssSelector("p.error-message")).get(0).getText());
             Устарело
             */
+        log4j.endMethod("LoginPageHelper - getErrorMessage()");
+        log4j.info("return error message");
        return errorMessage.getText();
     }
 

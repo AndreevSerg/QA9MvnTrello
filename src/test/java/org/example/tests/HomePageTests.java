@@ -17,7 +17,9 @@ public class HomePageTests extends TestBase{
 
     @Test
     public void verifyApplTest(){
-        Assert.assertTrue(homePage.isCorrectPage());
+
+            log4j.startTestCase("VerifyApplTest");
+            Assert.assertTrue(homePage.isCorrectPage());
     }
 
 }

@@ -31,8 +31,7 @@ public class DataProviders {
     @DataProvider
     public static Iterator<Object[]> newListCreating() throws IOException {
         BufferedReader in = new BufferedReader(new InputStreamReader(
-                DataProviders.class
-                        .getResourceAsStream("/newListCreating.data")));
+                DataProviders.class.getResourceAsStream("/newListCreating.data")));
 
         List<Object[]> userData = new ArrayList<>();
         String line = in.readLine();

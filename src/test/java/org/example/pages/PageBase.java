@@ -1,5 +1,6 @@
 package org.example.pages;
 
+import org.example.util.LogLog4j;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -10,6 +11,7 @@ import java.util.List;
 
 public class PageBase {
     WebDriver driver;
+    public static LogLog4j log4j = new LogLog4j();
 
     public void waitUntilElementIsClickable(By locator, int time) {
         try {
