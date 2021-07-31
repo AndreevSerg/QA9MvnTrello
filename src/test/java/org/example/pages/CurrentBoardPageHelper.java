@@ -47,24 +47,31 @@ public class CurrentBoardPageHelper extends PageBase {
     }
 
     public CurrentBoardPageHelper openPage() {
+        log4j.startMethod("CurrentBoardPageHelper - openPage()");
+        log4j.info("wait until boards icon is clickable");
         waitUntilElementIsClickable(getLocatorBoardButton(),10);
         // open 'QA Haifa9' board
         WebElement qaHaifa9Board = driver.findElement(getLocatorBoardButton());
         qaHaifa9Board.click();
+        log4j.endMethod("CurrentBoardPageHelper - openPage()");
         return this;
     }
 
     public By getLocatorBoardButton(){
+
         return By.xpath("//a[@class = 'board-tile'][.//div[@title='"+boardName+"']]");
     }
 
     public CurrentBoardPageHelper waitUntilPageIsLoaded() {
+        log4j.startMethod("CurrentBoardPageHelper - waitUntilPageIsLoaded()");
+        log4j.info("wait until add List button is clickable");
         waitUntilElementIsClickable(addListButton,10);
 
         if (addListButton.getText().equals("Add another list")) {
             //waitUntilAllElementsArePresent(By.cssSelector(".js-list-content"),5);
             waitUntilAllElementsAreVisible(columnsList,10);
         }
+        log4j.endMethod("CurrentBoardPageHelper - waitUntilPageIsLoaded()");
         return this;
     }
 

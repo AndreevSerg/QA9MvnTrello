@@ -21,6 +21,7 @@ public class CurrentBoardTests extends TestBase{
         boardsPage = PageFactory.initElements(driver,  BoardsPageHelper.class);
         qaHaifa9Board = new CurrentBoardPageHelper(driver, "QA Haifa9") ;
 
+        log4j.startMethod("CurrentBoardTests - initTests()");
         homePage.waitUntilPageIsLoaded();
         loginPage.openPage()
                .waitUntilPageIsLoaded()
@@ -29,6 +30,7 @@ public class CurrentBoardTests extends TestBase{
                 .openBoardsMenu();
         qaHaifa9Board.openPage()
                 .waitUntilPageIsLoaded();
+        log4j.endMethod("CurrentBoardTests - initTests()");
     }
 
     @Test

@@ -82,10 +82,12 @@ public class LoginPageHelper extends PageBase{
     }
 
     public LoginPageHelper loginAsAttl(String login, String password){
+        log4j.startMethod("LoginPageHelper - loginAsAttl()");
        fillInEmailField(login);
        pressLoginAttlButton();
        fillInPasswordAttl(password);
        submitLoginAttl();
+        log4j.endMethod("LoginPageHelper - loginAsAttl()");
        return this;
     }
 

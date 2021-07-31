@@ -44,6 +44,20 @@ public class DataProviders {
     }
 
 
+    @DataProvider
+    public static Iterator<Object[]> loginNegativeDifferentMessages() throws IOException {
+        BufferedReader in = new BufferedReader(new InputStreamReader(
+                DataProviders.class.getResourceAsStream("/loginNegativeDifferentMessages.data")));
+
+        List<Object[]> userData = new ArrayList<>();
+        String line = in.readLine();
+        while (line != null) {
+            userData.add(line.split(";"));
+            line = in.readLine();
+        }
+        in.close();
+        return userData.iterator();
+    }
 
     @DataProvider
     public static Iterator<Object[]> dataProviderSecond() {
@@ -67,6 +81,16 @@ public class DataProviders {
         return data.iterator();
     }
 
+    @DataProvider
+    public Iterator<Object[]> loginNegativeRandomData() {
+        List<Object[]> data = new ArrayList();
+
+        for (int i = 0; i < 3; ++i) {
+            data.add(new Object[]{this.genRandomString(6,10), this.generateRandomString2(3,8)});
+        }
+
+        return data.iterator();
+    }
 
     private Object generateRandomName() {
         return "demo" + (new Random()).nextInt() + "@gmail.com";
@@ -77,6 +101,39 @@ public class DataProviders {
         return "pass" + (new Random()).nextInt();
     }
 
+    public String genRandomString(int min,int max) {
+        String str = "";
+        int length = 0;
+        int i = 0;
+        int number;
+        if (min > max) return "";
+        Random gen = new Random();
+        length = min + gen.nextInt(max - min +1);
+        do {
+            number = '0' + gen.nextInt('z' - '0' + 1);
+            if ((number < 58 || number > 96 || (number > 64 && number < 91)))
+            {
+                str = str + (char) number;
+                i++;
+            }
+        }
+        while (i < length);
+
+        return str;
+    }
+
+    private String generateRandomString2(int minSymbolsCount, int maxSymbolsCount) {
+        String symbol = "0123456789zxcvbnmasdfghjklqwertyuiopZXCVBNMASDFGHJKLQWERTYUIOP";
+        char[] arr = symbol.toCharArray();
+        Random gen = new Random();
+        int countOfSimbols = minSymbolsCount + gen.nextInt(maxSymbolsCount - minSymbolsCount);
+        String pass = "";
+        for (int i = 0; i < countOfSimbols; i++) {
+            int num = gen.nextInt(62);
+            pass += arr[num];
+        }
+        return pass;
+    }
 
 }
 
