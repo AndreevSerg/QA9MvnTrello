@@ -16,7 +16,7 @@ public class LoginTests extends TestBase {
     BoardsPageHelper boardsPage;
 
 
-    @BeforeMethod
+    @BeforeMethod(alwaysRun = true)
     public void initTests() {
         //homePage = PageFactory.initElements(driver, HomePageHelper.class);
         loginPage = PageFactory.initElements(driver, LoginPageHelper.class);
@@ -41,7 +41,7 @@ public class LoginTests extends TestBase {
 
     }
 
-    @Test(dataProviderClass = DataProviders.class, dataProvider = "dataProviderThird")
+    @Test(groups = {"smoke", "system"}, dataProviderClass = DataProviders.class, dataProvider = "dataProviderThird")
     public void negativeLoginThirdDataProv(String login, String password) {
         //loginPage.fillInEmailField("email");
         //loginPage.fillInPasswordField("nlkikjl");
@@ -111,7 +111,7 @@ public class LoginTests extends TestBase {
     }
 
     //????
-    @Test(dataProviderClass = DataProviders.class, dataProvider ="loginNegativeRandomData")
+    @Test(groups = {"system"}, dataProviderClass = DataProviders.class, dataProvider ="loginNegativeRandomData")
     public void loginNegativeRandomData(String login, String password){
         loginPage.loginNotAttl(login,password);
         Assert.assertEquals(loginPage.getErrorMessage(),"There isn't an account for this username",

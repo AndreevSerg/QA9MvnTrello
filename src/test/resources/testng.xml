@@ -1,9 +1,30 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
 <suite name="Tests" verbose="5">
-  <test name="Test1">
+  <test name="Smoke testing" enabled="true">
+    <groups>
+      <run>
+        <include name="smoke"></include>
+      </run>
+    </groups>
     <classes>
-      <class name="org.example.SampleTestNgTest"/>
+      <class name="org.example.tests.HomePageTests"/>
+      <class name="org.example.tests.ActivityPageTests"/>
+      <class name="org.example.tests.LoginTests"/>
     </classes>
-  </test>  
+  </test>
+
+  <test name="Smoke testing w/o regression" enabled="false">
+    <groups>
+      <run>
+        <include name="smoke"></include>
+        <exclude name="regression"></exclude>
+      </run>
+    </groups>
+    <classes>
+      <class name="org.example.tests.HomePageTests"/>
+      <class name="org.example.tests.ActivityPageTests"/>
+      <class name="org.example.tests.LoginTests"/>
+    </classes>
+  </test>
 </suite>

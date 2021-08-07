@@ -72,7 +72,7 @@ public class TestBase {
   }
 
 
-  @BeforeSuite
+  @BeforeSuite(alwaysRun = true)
   public void initTestSuite() throws IOException {
     SuiteConfiguration config = new SuiteConfiguration();
     baseUrl = config.getProperty("site.url");
@@ -82,7 +82,7 @@ public class TestBase {
     capabilities = config.getCapabilities();
   }
 
-  @BeforeMethod
+  @BeforeMethod(alwaysRun = true)
   public void initWebDriver() {
     //driver = WebDriverPool.DEFAULT.getDriver(gridHubUrl, capabilities);
     ChromeOptions options = new ChromeOptions();
@@ -96,7 +96,7 @@ public class TestBase {
     homePage.waitUntilPageIsLoaded();
   }
 
-  @AfterMethod
+  @AfterMethod(alwaysRun = true)
   public void finishTest(ITestResult result){
     if(result.getStatus()==ITestResult.FAILURE)
     {

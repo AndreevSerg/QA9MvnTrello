@@ -8,14 +8,14 @@ public class HomePageTests extends TestBase{
     //HomePageHelper homePage;
 
 
-        @BeforeMethod
-        public void initTest(){
+        //@BeforeMethod
+        //public void initTest(){
         //homePage = new HomePageHelper(driver);
         //homePage = PageFactory.initElements(driver,HomePageHelper.class);
         //homePage.waitUntilPageIsLoaded();
-    }
+    //}
 
-    @Test
+    @Test(groups = {"smoke", "regression", "system"})
     public void verifyApplTest(){
 
             log4j.startTestCase("VerifyApplTest");
